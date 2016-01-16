@@ -11,7 +11,6 @@ def depth_first_search():
 		for child in childbranch:
 			if [child[0], child[1], child[2]] in visited: continue
 			frontier.append(child)
-			print child
 			
 def getchildren(node):
 	children = []
@@ -33,12 +32,17 @@ def getchildren(node):
 
 vac = raw_input("Enter: ")
 nums = vac.split(", ")
+for k in range(len(nums)):
+	nums[k] = int(nums[k])
+nums.append("")
 frontier = []
 visited = []
-frontier.append((int(nums[0]), int(nums[1]), int(nums[2]), ""))
-initial = (int(nums[0]), int(nums[1]), int(nums[2]), "")
-if(check_if_goal(initial)):
+frontier.append(nums)
+if(check_if_goal(nums) == True):
 	print ""
+	quit()
+elif(check_if_goal(nums) ==  "invalid input"):
+	print "invalid input"
 	quit()
 final = depth_first_search()
 print final[3]
