@@ -12,10 +12,13 @@ def depthFirstSearch(tup_node):
 		node = frontier.pop()
 		tnode = node[0]
 		
-		if isGoal(tnode,False):
+		res = isGoal(tnode,False)
+		if res == 1:
 			print "".join(node[1])
 			break
-
+		elif res == -1:
+			break
+			
 		if tnode not in allNodes:
 			allNodes.add(tnode)
 			for idx, child in enumerate(reversed(getAllChildren(tnode,allNodes))):

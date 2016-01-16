@@ -13,10 +13,13 @@ def breadthFirstSearch(tup_node):
 		node = queue.get()
 		tnode = node[0]
 
-		if isGoal(tnode,False):
+		res = isGoal(tnode,False)
+		if res == 1:
 			print "".join(node[1])
 			break
-
+		elif res == -1:
+			break
+			
 		if tnode not in allNodes:
 			allNodes.add(tnode)
 			for idx, child in enumerate(getAllChildren(tnode,allNodes)):
