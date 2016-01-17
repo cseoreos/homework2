@@ -14,10 +14,11 @@ def depthLimitedSearch(tup_node, dep_limit=DEPTH_LIMIT):
 		tnode = node[0]
 		
 		res = isGoal(tnode,False)
+		
 		if res == 1:
 			return "".join(node[1])
 		elif res == -1:
-			break
+			return None
 
 		if len(node[1]) < dep_limit:
 			if tnode not in allNodes:
@@ -26,7 +27,7 @@ def depthLimitedSearch(tup_node, dep_limit=DEPTH_LIMIT):
 					if child != None and child not in allNodes:
 						frontier.append([child, node[1] + seq[idx]])
 
-	return None
+	return "None"
 
 if __name__ == "__main__":
 	readCallFuncs(depthLimitedSearch)

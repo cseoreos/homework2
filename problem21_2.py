@@ -17,7 +17,7 @@ def breadthFirstSearch(tup_node):
 		if res == 1:
 			return "".join(node[1])
 		elif res == -1:
-			break
+			return None
 			
 		if tnode not in allNodes:
 			allNodes.add(tnode)
@@ -25,7 +25,7 @@ def breadthFirstSearch(tup_node):
 				if child != None and child not in allNodes:
 					queue.put([child, node[1] + seq[idx]])
 
-	return None
+	return "None"
 
 if __name__ == "__main__":
 	readCallFuncs(breadthFirstSearch)
