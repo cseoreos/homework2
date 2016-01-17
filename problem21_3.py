@@ -1,4 +1,5 @@
-from problem21_1 import *
+from problem21_1 import isGoal
+from helper import *
 
 def depthFirstSearch(tup_node):
 
@@ -14,8 +15,7 @@ def depthFirstSearch(tup_node):
 		
 		res = isGoal(tnode,False)
 		if res == 1:
-			print "".join(node[1])
-			break
+			return "".join(node[1])
 		elif res == -1:
 			break
 			
@@ -24,46 +24,8 @@ def depthFirstSearch(tup_node):
 			for idx, child in enumerate(reversed(getAllChildren(tnode,allNodes))):
 				if child != None and child not in allNodes:
 					frontier.append([child, node[1] + seq[idx]])
-				
 
-def getAllChildren(node,allNodes):
+	return None
 	
-	allChildren = [None] * 3
-	curr_loc = node[-1]
-
-	#left state
-	if curr_loc > 0:
-		left_list = list(node)
-		left_list[-1] -= 1
-		tmp_tup = tuple(left_list)
-		if tmp_tup not in allNodes:
-			allChildren[0] = tmp_tup
-
-	#right state
-	if curr_loc < (len(node[:-1]) - 1):
-		right_list = list(node)
-		right_list[-1] += 1
-		tmp_tup = tuple(right_list)
-		if tmp_tup not in allNodes:
-			allChildren[1] = tmp_tup
-
-	#suck state
-	if node[curr_loc] != 0:
-		suck_list = list(node)
-		suck_list[curr_loc] = 0
-		tmp_tup = tuple(suck_list)
-		if tmp_tup not in allNodes:
-			allChildren[2] = tmp_tup
-	
-	return allChildren
-
 if __name__ == "__main__":
-	for line in stdin:
-		try:
-			line = re.sub("\s*", "", line)
-			if len(line) == 0:
-				continue
-			val_tup = tuple(map(lambda x: int(x.strip()), line.split(",")))
-			depthFirstSearch(val_tup)
-		except:
-			print "invalid input"
+	readCallFuncs(depthFirstSearch)

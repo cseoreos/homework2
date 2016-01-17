@@ -1,7 +1,6 @@
-from sys import stdin
-import re
+from helper import readCallFuncs
 
-def isGoal(val_tup,toPrint):
+def isGoal(val_tup,toPrint=True):
 	is_bad = reduce(lambda x,y: x|y, val_tup[:-1])
 	
 	if is_bad < 0 or is_bad > 1 or val_tup[-1] >= len(val_tup[:-1]) or val_tup[-1] < 0:
@@ -19,12 +18,4 @@ def isGoal(val_tup,toPrint):
 			return 1
 
 if __name__ == "__main__":
-	for line in stdin:
-		try:
-			line = re.sub("\s*", "", line)
-			if len(line) == 0:
-				continue
-			val_tup = tuple(map(lambda x: int(x.strip()), line.split(",")))
-			isGoal(val_tup,True)
-		except:
-			print "invalid input"
+	readCallFuncs(isGoal)

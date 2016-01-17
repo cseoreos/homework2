@@ -1,9 +1,9 @@
-from problem21_3 import getAllChildren
-from problem21_1 import *
+from problem21_1 import isGoal
+from helper import *
 
 DEPTH_LIMIT = 5
 
-def depthLimitedSearch(tup_node):
+def depthLimitedSearch(tup_node, dep_limit=DEPTH_LIMIT):
 	frontier = []
 	frontier.append([tup_node,""])
 	seq = ["S","R","L"]
@@ -15,25 +15,18 @@ def depthLimitedSearch(tup_node):
 		
 		res = isGoal(tnode,False)
 		if res == 1:
-			print "".join(node[1])
-			break
+			return "".join(node[1])
 		elif res == -1:
 			break
 
-		if len(node[1]) < DEPTH_LIMIT:
+		if len(node[1]) < dep_limit:
 			if tnode not in allNodes:
 				allNodes.add(tnode)
 				for idx, child in enumerate(reversed(getAllChildren(tnode,allNodes))):
 					if child != None and child not in allNodes:
 						frontier.append([child, node[1] + seq[idx]])
 
+	return None
+
 if __name__ == "__main__":
-	for line in stdin:
-		try:
-			line = re.sub("\s*", "", line)
-			if len(line) == 0:
-				continue
-			val_tup = tuple(map(lambda x: int(x.strip()), line.split(",")))
-			depthLimitedSearch(val_tup)
-		except:
-			print "invalid input"
+	readCallFuncs(depthLimitedSearch)
