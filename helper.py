@@ -2,6 +2,8 @@ from sys import stdin
 from operator import *
 import re
 
+seq = ["L", "U", "R", "D", "S"]
+
 def readCallFuncs(func):
 	for line in stdin:
 		try:
@@ -62,7 +64,7 @@ def getAllChildren(node,allNodes):
 	
 	return allChildren
 
-def getAllChildrenLargeEvn(node, allNodes, seq):
+def getAllChildrenLargeEvn(node, allNodes):
 	
 	#list of tuples
 	allChildren = [None] * 5
@@ -80,8 +82,9 @@ def getAllChildrenLargeEvn(node, allNodes, seq):
 		"S" : [suck_loc, ne, 0, sub]
 	}
 
-
+	
 	for idx, val in enumerate(seq):
+		
 		op_list = op_dict[val]
 		if op_list[1](op_list[0],op_list[2]):
 
@@ -89,13 +92,15 @@ def getAllChildrenLargeEvn(node, allNodes, seq):
 			child = list(node)
 			updated_row_col = op_list[3](op_list[0], 1)
 
-			if idx != 4:
-				if idx <= 1:
+			if val != "S":
+				if val == "L" or val == "R":
 					tmp_loc_list = (curr_row, updated_row_col)
 				else:
 					tmp_loc_list = (updated_row_col, curr_col)
 				child[-1] = tmp_loc_list
+				
 			else:
+				#sucking
 				tmp_list = list(child[curr_row])
 				tmp_list[curr_col] = updated_row_col
 				child[curr_row] = tuple(tmp_list)
@@ -103,5 +108,5 @@ def getAllChildrenLargeEvn(node, allNodes, seq):
 			child = tuple(child)
 			if child not in allNodes:
 				allChildren[idx] = child
-
+	
 	return allChildren

@@ -1,14 +1,12 @@
-from problem23_1 import isGoal
-from helper import *
+from problem23_1 import *
 import Queue
 
 def breadthFirstSearch(node_tup):
 
 	queue = Queue.Queue()
 	queue.put([node_tup,""])
-	seq = ["L", "R", "U", "D", "S"]
 	allNodes = set()
-
+	
 	while not queue.empty():
 		node = queue.get()
 		tnode = node[0]
@@ -21,8 +19,8 @@ def breadthFirstSearch(node_tup):
 			
 		if tnode not in allNodes:
 			allNodes.add(tnode)
-			for idx, child in enumerate(getAllChildrenLargeEvn(tnode, allNodes, seq)):
-				if child != None and child not in allNodes:
+			for idx, child in enumerate(getAllChildrenLargeEvn(tnode, allNodes)):
+				if child != None:
 					queue.put([child, node[1] + seq[idx]])
 
 	return "None"
