@@ -3,6 +3,7 @@ from operator import *
 import re
 
 seq = ["L", "U", "R", "D", "S"]
+seq_one = ["L", "R", "S"]
 
 def readCallFuncs(func):
 	for line in stdin:
@@ -61,7 +62,7 @@ def getAllChildren(node,allNodes):
 		tmp_tup = tuple(suck_list)
 		if tmp_tup not in allNodes:
 			allChildren[2] = tmp_tup
-	
+			
 	return allChildren
 
 def getAllChildrenLargeEvn(node, allNodes):
