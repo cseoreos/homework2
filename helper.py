@@ -1,6 +1,6 @@
 from sys import stdin
 from operator import *
-import re
+import re, heapq
 
 seq = ["L", "U", "R", "D", "S"]
 seq_one = ["L", "R", "S"]
@@ -111,3 +111,18 @@ def getAllChildrenLargeEvn(node, allNodes):
 				allChildren[idx] = child
 	
 	return allChildren
+
+class PriorityQueue:
+	def __init__(self):
+		self._qu = []
+		self._idx = 0
+
+	def push(self, data):
+		heapq.heappush(self._qu, (data[0], self._idx, data))
+		self._idx += 1
+
+	def pop(self):
+		return heapq.heappop(self._qu)
+
+	def empty(self):
+		return not len(self._qu)
