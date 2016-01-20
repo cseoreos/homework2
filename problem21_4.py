@@ -19,12 +19,11 @@ def depthLimitedSearch(tup_node, dep_limit=DEPTH_LIMIT):
 		elif res == -1:
 			return None
 
+		allNodes.add(tnode)
 		if len(node[1]) < dep_limit:
-			if tnode not in allNodes:
-				allNodes.add(tnode)
-				for idx, child in enumerate(reversed(getAllChildren(tnode,allNodes))):
-					if child != None:
-						frontier.append([child, node[1] + seq_one[-(idx+1)]])
+			for idx, child in enumerate(reversed(getAllChildren(tnode,allNodes))):
+				if child != None:
+					frontier.append([child, node[1] + seq_one[-(idx+1)]])
 
 	return "None"
 

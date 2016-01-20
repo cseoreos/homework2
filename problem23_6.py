@@ -24,14 +24,11 @@ def ASearch(node_tup):
 		elif res == -1:
 			return None
 
-		if tnode not in allNodes:
-			allNodes.add(tnode)
-			
-			for idx, child in enumerate(getAllChildrenLargeEvn(tnode, allNodes)):
-				if child != None:
-					cost = node[0] - getDirtyNum(tnode[:-1])
-					final_val = getDirtyNum(child[:-1]) + (cost + 1)
-					queue.push((final_val, child, node[2][2] + seq[idx]))
+		for idx, child in enumerate(getAllChildrenLargeEvn(tnode, allNodes)):
+			if child != None:
+				cost = node[0] - getDirtyNum(tnode[:-1])
+				final_val = getDirtyNum(child[:-1]) + (cost + 1)
+				queue.push((final_val, child, node[2][2] + seq[idx]))
 					
 
 	return "None"
