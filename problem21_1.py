@@ -1,3 +1,8 @@
+'''
+Gurkirat Singh: A11593827
+Anirudh Chava:  A99415981
+Jason Geneste:  A11357496
+'''
 from helper import readCallFuncs
 
 def isGoal(val_tup,toPrint=True):
