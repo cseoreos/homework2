@@ -1,3 +1,9 @@
+'''
+Gurkirat Singh: A11593827
+Anirudh Chava:  A99415981
+Jason Geneste:  A11357496
+'''
+
 from sys import stdin
 from operator import *
 import re, heapq
