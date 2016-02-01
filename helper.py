@@ -12,7 +12,19 @@ seq = ["L", "U", "R", "D", "S"]
 seq_one = ["L", "R", "S"]
 
 def readCallFuncs(func):
-	for line in stdin:
+	line = stdin.readline();
+	try:
+		line = re.sub("\s*", "", line)
+		if len(line) == 0:
+			continue
+		val_tup = tuple(map(lambda x: int(x.strip()), line.split(",")))
+		res = func(val_tup)
+		if type(res) == str:
+			print res
+	except:
+		print "invalid input"
+		
+	'''for line in stdin:
 		try:
 			line = re.sub("\s*", "", line)
 			if len(line) == 0:
@@ -22,7 +34,7 @@ def readCallFuncs(func):
 			if type(res) == str:
 				print res
 		except:
-			print "invalid input"
+			print "invalid input"'''
 
 def readCallFuncsLargeEnv(func):
 	dim_lst = []
